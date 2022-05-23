@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.myappilication201.databinding.WeatherListItemBinding
 import com.example.myappilication201.model.ForecastModel
 import com.example.myappilication201.views.DetailedWeatherFragment
@@ -34,6 +35,7 @@ class WeatherRecyclerAdapter(
 
             @SuppressLint("SetTextI18n")
             fun bind(forecastModel: ForecastModel) {
+
 
 
                 val timestamp =forecastModel.dt.toLong()

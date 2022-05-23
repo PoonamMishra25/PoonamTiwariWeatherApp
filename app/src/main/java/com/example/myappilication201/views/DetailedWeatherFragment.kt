@@ -1,15 +1,17 @@
 package com.example.myappilication201.views
 
+
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.myappilication201.R
+
 import com.example.myappilication201.databinding.FragmentDetailedWeatherBinding
 import com.example.myappilication201.model.ForecastModel
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,42 +48,64 @@ class DetailedWeatherFragment : Fragment() {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_detailed_weather, container, false)
         _binding = FragmentDetailedWeatherBinding.inflate(layoutInflater)
+
         val forecastModel: ForecastModel? = arguments?.getParcelable(ARG_PARAM1)
+        val icon: String = forecastModel?.weather?.get(0)?.icon!!
+        val iconUrl = "http://openweathermap.org/img/w/$icon.png"
 
 
 
-        binding.tvDetailedDesc.text = forecastModel?.weather?.get(0)?.description.toString()
-        binding.tvHumidity.text = forecastModel?.main?.humidity.toString()+"%"
-        binding.tvPressure.text = forecastModel?.main?.pressure.toString()+"hPa"
-        binding.tvWind.text = forecastModel?.wind?.speed.toString()+"Km/h"
-        binding.tvDetailcityname.text= WeatherFragment.str
 
 
-        when(WeatherFragment.flag){
-                    0-> {
-                        binding.tvDetailedTemp.text = forecastModel?.main?.temp.toString()+"K"
-                        binding.tvFeelsLike.text = forecastModel?.main?.feels_like.toString()+"K"
-                        binding.tvMaxTemp.text = forecastModel?.main?.temp_max.toString()+"K"
-                        binding.tvMinTemp.text = forecastModel?.main?.temp_min.toString()+"K"
-                    }
-            1->{
-                binding.tvDetailedTemp.text = forecastModel?.main?.temp?.let { kelvinToCelsius(it) }.toString().substring(0,4)+"C"
-                binding.tvFeelsLike.text = forecastModel?.main?.feels_like?.let { kelvinToCelsius(it) }.toString().substring(0,4)+"C"
-                binding.tvMaxTemp.text = forecastModel?.main?.temp_max?.let { kelvinToCelsius(it) }.toString().substring(0,4)+"C"
-                binding.tvMinTemp.text = forecastModel?.main?.temp_min?.let { kelvinToCelsius(it) }.toString().substring(0,4)+"C"
+        binding.tvDetailedDesc.text = forecastModel.weather[0].description
+        binding.tvHumidity.text = forecastModel.main.humidity.toString() + "%"
+        binding.tvPressure.text = forecastModel.main.pressure.toString() + "hPa"
+        binding.tvWind.text = forecastModel.wind.speed.toString() + "Km/h"
+        binding.tvDetailcityname.text = WeatherFragment.str
+
+
+        when (WeatherFragment.flag) {
+            0 -> {
+                binding.tvDetailedTemp.text = forecastModel.main.temp.toString() + "K"
+                binding.tvFeelsLike.text = forecastModel.main.feels_like.toString() + "K"
+                binding.tvMaxTemp.text = forecastModel.main.temp_max.toString() + "K"
+                binding.tvMinTemp.text = forecastModel.main.temp_min.toString() + "K"
+            }
+            1 -> {
+                binding.tvDetailedTemp.text =
+                    forecastModel.main.temp.let { kelvinToCelsius(it) }.toString()
+                        .substring(0, 4) + "C"
+                binding.tvFeelsLike.text =
+                    forecastModel.main.feels_like.let { kelvinToCelsius(it) }.toString()
+                        .substring(0, 4) + "C"
+                binding.tvMaxTemp.text =
+                    forecastModel.main.temp_max.let { kelvinToCelsius(it) }.toString()
+                        .substring(0, 4) + "C"
+                binding.tvMinTemp.text =
+                    forecastModel.main.temp_min.let { kelvinToCelsius(it) }.toString()
+                        .substring(0, 4) + "C"
             }
 
-            2->{
-                binding.tvDetailedTemp.text = forecastModel?.main?.temp?.let { kelvinToFehrenheit(it) }.toString().substring(0,4)+"F"
-                binding.tvFeelsLike.text = forecastModel?.main?.feels_like?.let { kelvinToFehrenheit(it) }.toString().substring(0,4)+"F"
-                binding.tvMaxTemp.text = forecastModel?.main?.temp_max?.let { kelvinToFehrenheit(it) }.toString().substring(0,4)+"F"
-                binding.tvMinTemp.text = forecastModel?.main?.temp_min?.let { kelvinToFehrenheit(it) }.toString().substring(0,4)+"F"
+            2 -> {
+                binding.tvDetailedTemp.text =
+                    forecastModel.main.temp.let { kelvinToFehrenheit(it) }.toString()
+                        .substring(0, 4) + "F"
+                binding.tvFeelsLike.text =
+                    forecastModel.main.feels_like.let { kelvinToFehrenheit(it) }.toString()
+                        .substring(0, 4) + "F"
+                binding.tvMaxTemp.text =
+                    forecastModel.main.temp_max.let { kelvinToFehrenheit(it) }.toString()
+                        .substring(0, 4) + "F"
+                binding.tvMinTemp.text =
+                    forecastModel.main.temp_min.let { kelvinToFehrenheit(it) }.toString()
+                        .substring(0, 4) + "F"
             }
 
         }
         binding.imageView.setOnClickListener { getFragmentManager()?.popBackStack() }
-
-
+        Glide.with(binding.imageIcon)
+            .load("http://openweathermap.org/img/w/10d.png")
+            .into(binding.imageIcon)
         return binding.root
     }
 
@@ -96,7 +120,7 @@ class DetailedWeatherFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(weatherReport:ForecastModel) =
+        fun newInstance(weatherReport: ForecastModel) =
             DetailedWeatherFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_PARAM1, weatherReport)
@@ -105,17 +129,18 @@ class DetailedWeatherFragment : Fragment() {
                 }
             }
 
-        fun kelvinToCelsius(temp:Double):Double{
+        fun kelvinToCelsius(temp: Double): Double {
             return temp - 273.15
         }
 
-       // val fahrenheit:Double=1.8*(forecastModel?.main?.temp-273)+32
+        // val fahrenheit:Double=1.8*(forecastModel?.main?.temp-273)+32
 
-        fun kelvinToFehrenheit(temp:Double):Double{
-            return 1.8*(temp-273)+32
+        fun kelvinToFehrenheit(temp: Double): Double {
+            return 1.8 * (temp - 273) + 32
         }
 
     }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

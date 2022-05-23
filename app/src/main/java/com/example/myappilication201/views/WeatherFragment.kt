@@ -1,5 +1,6 @@
 package com.example.myappilication201.views
 
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -58,7 +59,7 @@ class WeatherFragment : Fragment() {
         _binding = FragmentWeatherBinding.inflate(layoutInflater)
          str=arguments?.getString("KEY")
         flag=arguments?.getInt("flag")
-        binding.cityNameFrag.text = str+"'s Hourly Weather Report"
+     //   binding.cityNameFrag.text = str+"'s Hourly Weather Report"
         configureObserver()
 
         binding.imageButton.setOnClickListener { getFragmentManager()?.popBackStack() }
@@ -70,9 +71,12 @@ class WeatherFragment : Fragment() {
         // viewLifecycleOwner -> points to the owner of the ViewModel
         viewModel.weatherReport.observe(viewLifecycleOwner) { response ->
             if (response.isEmpty()) {
+                binding.tvErrorTextView.visibility=View.VISIBLE
                 binding.tvErrorTextView.text = "Network call failed"
+                binding.pbLoading.visibility = View.GONE
             } else {
                 weatherAdapter.setUserList(response)
+                binding.cityNameFrag.text = str+"'s Hourly Weather Report"
                 binding.apply {
                     rvList.layoutManager=LinearLayoutManager(requireContext())
                     rvList.adapter = weatherAdapter

@@ -10,12 +10,8 @@ interface WeatherRepository {
 
 }
 
-class WeatherRepositoryImpl(
-    private val service: ApiService = ApiService.getApiService()
-    ): WeatherRepository {
-
-
-
+class WeatherRepositoryImpl(private val service: ApiService = ApiService.getApiService()): WeatherRepository
+{
    override suspend fun getWeatherReportForecast(cityName: String?): ListForecastModel {
         val response=service.getWeatherReportForecast(cityName = cityName)
         return if(response.isSuccessful){

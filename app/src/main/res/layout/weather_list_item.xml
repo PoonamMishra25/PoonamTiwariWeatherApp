@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:elevation="10dp"
+    android:padding="8dp"
+    android:backgroundTint="#D6ECEF"
+    >
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_timeRv"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:text="Time" />
+        <TextView
+            android:id="@+id/tv_dayRV"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:text="Day" />
+
+
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginStart="10dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_baseline_cloud_queue_24"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:gravity="end"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tvc"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="Temp: "
+            android:textSize="18sp"
+            android:textAlignment="textStart"
+
+            android:layout_marginStart="20dp"/>
+    <TextView
+        android:id="@+id/tvS"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+       android:textSize="18sp"
+        android:textAlignment="textStart"
+        android:text="Status: " />
+
+
+        <TextView
+            android:id="@+id/tv_w"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="Wind: "
+            android:textAlignment="textStart"
+            android:textSize="18sp"/>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_CurrentTemp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Temp: "
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+
+                android:layout_marginStart="2dp"/>
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:text="Status: " />
+
+
+            <TextView
+                android:id="@+id/tv_windRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wind: "
+                android:textAlignment="textStart"
+                android:textSize="18sp"/>
+
+    </LinearLayout>></LinearLayout>
+</androidx.cardview.widget.CardView>

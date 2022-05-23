@@ -27,8 +27,8 @@
         android:layout_height="wrap_content"
         android:text="LookUp"
         android:textColor="@color/black"
-
-        android:backgroundTint="#D1CBCB"
+        android:drawableEnd="@drawable/ic_baseline_search_24"
+        android:backgroundTint="#7ED1DC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />

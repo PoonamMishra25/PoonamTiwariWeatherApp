@@ -54,6 +54,7 @@ class DetailedWeatherFragment : Fragment() {
         binding.tvHumidity.text = forecastModel?.main?.humidity.toString()+"%"
         binding.tvPressure.text = forecastModel?.main?.pressure.toString()+"hPa"
         binding.tvWind.text = forecastModel?.wind?.speed.toString()+"Km/h"
+        binding.tvDetailcityname.text= WeatherFragment.str
 
 
         when(WeatherFragment.flag){

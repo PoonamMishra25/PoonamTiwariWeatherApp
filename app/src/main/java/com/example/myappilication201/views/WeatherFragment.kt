@@ -55,11 +55,11 @@ class WeatherFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentWeatherBinding.inflate(layoutInflater)
          str=arguments?.getString("KEY")
         flag=arguments?.getInt("flag")
-     //   binding.cityNameFrag.text = str+"'s Hourly Weather Report"
+
         configureObserver()
 
         binding.imageButton.setOnClickListener { getFragmentManager()?.popBackStack() }

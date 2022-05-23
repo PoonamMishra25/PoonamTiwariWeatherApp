@@ -44,16 +44,20 @@ class DetailedWeatherFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_detailed_weather, container, false)
         _binding = FragmentDetailedWeatherBinding.inflate(layoutInflater)
 
         val forecastModel: ForecastModel? = arguments?.getParcelable(ARG_PARAM1)
-        val icon: String = forecastModel?.weather?.get(0)?.icon!!
-        val iconUrl = "http://openweathermap.org/img/w/$icon.png"
+
+       val icon: String = forecastModel?.weather?.get(0)?.icon!!
 
 
+
+        Glide.with(this)
+            .load("https://openweathermap.org/img/wn/" + forecastModel.weather[0].icon + "@2x.png")
+            .into(binding.imageIcon)
 
 
 
@@ -61,9 +65,9 @@ class DetailedWeatherFragment : Fragment() {
         binding.tvHumidity.text = forecastModel.main.humidity.toString() + "%"
         binding.tvPressure.text = forecastModel.main.pressure.toString() + "hPa"
         binding.tvWind.text = forecastModel.wind.speed.toString() + "Km/h"
-        binding.tvDetailcityname.text = WeatherFragment.str
+        binding.tvDetailcityname.text = WeatherFragment.str+"'s Current Weather"
 
-
+//check which radio button is click
         when (WeatherFragment.flag) {
             0 -> {
                 binding.tvDetailedTemp.text = forecastModel.main.temp.toString() + "K"

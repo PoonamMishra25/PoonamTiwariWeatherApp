@@ -1,19 +1,17 @@
 package com.example.mvvmexample.view
 
 import android.annotation.SuppressLint
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.Target
 import com.example.myappilication201.databinding.WeatherListItemBinding
 import com.example.myappilication201.model.ForecastModel
 import com.example.myappilication201.views.DetailedWeatherFragment
 import com.example.myappilication201.views.WeatherFragment
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-import kotlin.time.Duration.Companion.days
 
 // Unit -> void
 // Unit just returns the function call
@@ -37,7 +35,9 @@ class WeatherRecyclerAdapter(
             fun bind(forecastModel: ForecastModel) {
 
 
-
+                Glide.with(binding.imageCloud)
+                    .load("https://openweathermap.org/img/wn/" + forecastModel.weather[0].icon + "@2x.png")
+                    .into(binding.imageCloud)
                 val timestamp =forecastModel.dt.toLong()
                 val timestampAsDateString = DateTimeFormatter.ISO_INSTANT.format(java.time.Instant.ofEpochSecond(timestamp))
 

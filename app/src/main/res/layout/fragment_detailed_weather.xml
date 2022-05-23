@@ -47,10 +47,11 @@
             android:textSize="90sp"
             android:textStyle="bold"
             android:layout_marginTop="2dp"
-           app:layout_constraintTop_toBottomOf="@id/imageIcon"
+         app:layout_constraintTop_toBottomOf="@id/tvDetailedDesc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 <LinearLayout
+    android:id="@+id/linear1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -164,6 +165,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearwind"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -202,11 +204,12 @@
             android:id="@+id/imageIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_cloud_queue_24"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear1" />
 
-            app:layout_constraintTop_toBottomOf="@id/tvDetailedDesc"
-            app:layout_constraintBottom_toTopOf="@id/tvDetailedTemp"
-             />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
